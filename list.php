@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+function generateEmptyList() {
+    return "<div class='add-new-wrap'><h2>Sąskaitų sąrašas tuščias</h2><a class='btn' href='./new.php'>Pridėti sąskaitą</a></div>";
+}  
+function generateList(){
+    return 'hello';
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +20,18 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <?php include "header.html" ?>
+    <?php include "header.html"; 
+    if (empty($_SESSION)) {
+    echo generateEmptyList();
+        } else {
+            echo generateList($_SESSION);
+        }
+        ?>
+    <main>
+       <?php 
+
+     
+?>
+    </main>
 </body>
 </html>
