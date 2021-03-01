@@ -9,7 +9,6 @@
     letter-spacing: 1px;
     border: 2px solid var(--second-color);
     transition: all 0.5s;
-    width: 200px;
     text-align: center;
 }
 

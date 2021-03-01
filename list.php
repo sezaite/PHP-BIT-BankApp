@@ -17,9 +17,10 @@ function generateList(){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mano Bankas</title>
-    <link rel="stylesheet" href="style.css">
+    <link href="style.css?<?=filemtime("style.css")?>" rel="stylesheet" type="text/css" />
 </head>
 <body>
+<main>
     <?php include "header.html"; 
     if (empty($_SESSION)) {
     echo generateEmptyList();
@@ -27,11 +28,6 @@ function generateList(){
             echo generateList($_SESSION);
         }
         ?>
-    <main>
-       <?php 
-
-     
-?>
     </main>
 </body>
 </html>
