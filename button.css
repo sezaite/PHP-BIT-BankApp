@@ -1,0 +1,26 @@
+.btn {
+    display: inline-block;
+    color: var(--third-color);
+    background-color: var(--second-color);
+    text-decoration: none;
+    font-size: 15px;
+    padding: 12px 16px;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    border: 2px solid var(--second-color);
+    transition: all 0.5s;
+    width: 200px;
+    text-align: center;
+}
+
+.btn:hover {
+    color: var(--second-color);
+    background-color: var(--first-color);
+    cursor: pointer;
+}
+
+.btn.submit-btn {
+    width: 130px;
+    padding: 10px 12px;
+    font-size: 10px; 
+}
