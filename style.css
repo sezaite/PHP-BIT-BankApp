@@ -11,6 +11,7 @@
     --first-color:  rgb(243, 243, 243);
     --second-color: rgb(56, 55, 146);
     --third-color: #fff;
+    --accent-color: rgb(255, 166, 0);
 }
 
 body {
@@ -43,6 +44,10 @@ a:hover {
     opacity: 0.5;
 }
 
+.error{
+    color: var(--accent-color);
+}
+
 .add-new-wrap {
     width: 400px;
     height: 200px;
@@ -60,7 +65,7 @@ a:hover {
 
 .form-wrap {
     width: 400px;
-    height: 350px;
+    height: 380px;
     border: 4px solid var(--third-color);
     margin: 40px auto;
     text-align: center;
@@ -69,19 +74,19 @@ a:hover {
 .form-wrap h3 {
     font-size: 18px;
     color: var(--second-color);
-    margin: 15px 0;
+    margin: 20px 0 10px 0;
 }
 
 .form-wrap form {
     width: 70%;
-    margin: auto;
+    margin: 10px auto;
     
 }
 .form-wrap input {
     display: inline-block;
     width: 100%;
     height: 20px;
-    margin: 0 0 15px 0;
+    margin: 0 0 10px 0;
     overflow: hidden;
     border: none;
     outline: none;
@@ -95,5 +100,5 @@ a:hover {
 
 .form-wrap button {
     display: inline-block;
-    margin-left: auto;
+    margin-top: 10px;
 }

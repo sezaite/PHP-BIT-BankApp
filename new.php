@@ -1,5 +1,26 @@
 <?php
 session_start();
+if(!empty($_POST)){
+    if(($_POST['name'] === '') || ($_POST['surname'] === '') || ($_POST['acc'] === '') || ($_POST['personalID'] === '')){
+        $_SESSION['erroras'] = 'Įveskite visus duomenis!';
+         header ('Location: http://localhost/bit/nd8/new.php');
+        die;
+    } else {
+        $duomenys = file_get_contents('useriai.json');
+        $useriuArr = json_decode($duomenys, 1);
+        $useriuArr[] = $_POST;
+        $naujasJson = json_encode($useriuArr);
+        file_put_contents('useriai.json', $naujasJson);
+        $_SESSION['erroras'] = 'Sąskaita pridėta!';
+        header ('Location: http://localhost/bit/nd8/new.php');
+        die;
+    }   
+} 
+
+$duomenys = file_get_contents('useriai.json');
+$useriuArr = json_decode($duomenys, 1);
+_d($useriuArr);
+
 ?>
 
 <!DOCTYPE html>
@@ -16,6 +37,7 @@ session_start();
     <main>
         <div class='form-wrap'>
             <h3>Įveskite duomenis: </h3>
+            <h6 class='error'> <?= $_SESSION['erroras'] ?? '' ?> </h6>
         <form action="" method='post'>
 
         <label for="name">Vardas:</label>
