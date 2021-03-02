@@ -22,12 +22,38 @@ function generateList(){
 <body>
 <main>
     <?php include "header.html"; 
-    if (empty($_SESSION)) {
+    $duomenys = file_get_contents('useriai.json');
+    $useriuArr = json_decode($duomenys, 1);
+    if (count($useriuArr) === 0) {
     echo generateEmptyList();
-        } else {
-            echo generateList($_SESSION);
+        } else { ?>
+        <table id="user-table">
+            <tr>
+                <th>Sąskaitos Nr</th>
+                <th>Vardas</th>
+                <th>Pavardė</th>
+                <th>Asmens kodas</th>
+                <th>Papildyti</th>
+                <th>Nuskaičiuoti</th>
+                <th>Ištrinti sąskaitą</th>
+            </tr>
+
+        <?php
+            foreach($useriuArr as $key => $user){ ?>
+                <tr>
+                    <td><?= $user['acc'] ?></td>
+                    <td><?= $user['name'] ?></td>
+                    <td><?= $user['surname'] ?></td>
+                    <td><?= $user['personalID'] ?></td>
+                    <td>Nuskaičiuoti</td>
+                    <td>Pridėti</td>
+                    <td><a href="delete.php?userNR=<?= $key ?>">Ištrinti</a></td>
+                </tr>
+            <?php }
+            echo '</table>';
         }
         ?>
     </main>
 </body>
 </html>
+

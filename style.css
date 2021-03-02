@@ -32,8 +32,12 @@ nav {
     grid-column-start: 2;   
 }
 
-nav a {
+ a  {
     text-decoration: none;
+    color: var(--accent-color);
+}
+
+nav a  {
     color: var(--third-color);
     transition: all, 0.3s;
     font-size: 16px;
@@ -102,3 +106,27 @@ a:hover {
     display: inline-block;
     margin-top: 10px;
 }
+
+/* TABLES */
+
+table {
+    border-collapse: collapse;
+    width: 80%;
+    margin: 40px auto;
+    border: solid 4px var(--third-color);
+    background-color: var(--third-color);
+    font-size: 14px;
+    
+  }
+  
+  th, td {
+    text-align: center;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even){background-color: #f2f2f2}
+  
+  th {
+    background-color: var(--second-color);
+    color: white;
+  }
