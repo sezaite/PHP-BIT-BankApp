@@ -12,6 +12,8 @@
     --second-color: rgb(56, 55, 146);
     --third-color: #fff;
     --accent-color: rgb(255, 166, 0);
+    --happy-color: rgb(0, 199, 33);
+    --danger-color: rgb(177, 31, 31);
 }
 
 body {
@@ -34,7 +36,6 @@ nav {
 
  a  {
     text-decoration: none;
-    color: var(--accent-color);
 }
 
 nav a  {
@@ -130,3 +131,40 @@ table {
     background-color: var(--second-color);
     color: white;
   }
+
+  .money-operation {
+      width: 80%;
+      margin: 20px auto;
+      border: solid 4px var(--third-color);
+      text-align: center;
+  }
+
+  .money-operation label {
+      margin-top: 20px;
+    display: inline-block;
+    width: 100%;
+  }
+
+  .money-operation input {
+    display: block;
+    margin: 20px auto;
+  }
+
+  .money-operation button {
+    display: block;
+    margin: 0 auto 20px;
+  }
+  
+/* LINKS */
+
+    a.add {
+        color: var(--happy-color);
+    }
+
+    a.delete {
+        color: var(--danger-color);
+    }
+
+    a.cashout {
+        color: var(--accent-color);
+    }

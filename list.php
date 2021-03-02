@@ -25,7 +25,7 @@ function generateList(){
     $duomenys = file_get_contents('useriai.json');
     $useriuArr = json_decode($duomenys, 1);
     if (count($useriuArr) === 0) {
-    echo generateEmptyList();
+        echo generateEmptyList();
         } else { ?>
         <table id="user-table">
             <tr>
@@ -45,9 +45,9 @@ function generateList(){
                     <td><?= $user['name'] ?></td>
                     <td><?= $user['surname'] ?></td>
                     <td><?= $user['personalID'] ?></td>
-                    <td>Nuskaičiuoti</td>
-                    <td>Pridėti</td>
-                    <td><a href="delete.php?userNR=<?= $key ?>">Ištrinti</a></td>
+                    <td><a class="add" href="add.php?userNR=<?= $key ?>">Pridėti</a></td>
+                    <td><a class="cashout" href="cashout.php?userNR=<?= $key ?>">Nuskaičiuoti</a></td>
+                    <td><a class="delete" href="delete.php?userNR=<?= $key ?>">Ištrinti</a></td>
                 </tr>
             <?php }
             echo '</table>';

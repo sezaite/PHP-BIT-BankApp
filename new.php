@@ -44,6 +44,7 @@ if(!empty($_POST)){
         <input type="text" id='acc' name = 'acc'>
         <label for="personalID">Asmens kodas:</label>
         <input type="number" id='personalID' name = 'personalID'>
+        <input type="hidden" name = 'balance' value='0'>
         
         <button type='submit' class='btn submit-btn'>Atidaryti sąskaitą</button>
         </form>
