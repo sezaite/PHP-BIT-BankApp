@@ -7,7 +7,6 @@ function redirectToMainForm() {
 function generateList(){
     return 'hello';
 }
-
 ?>
 
 <!DOCTYPE html>
