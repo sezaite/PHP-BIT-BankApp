@@ -2,7 +2,7 @@
 session_start();
 
 function redirectToMainForm() {
-    return "<div class='add-new-wrap'><h2>Pasirinkite, kurią sąskaitą apvogsite</h2><a class='btn' href='./list.php'>Grįžti į sąskaitų sąrašą</a></div>";
+    return "<div class='add-new-wrap'><h2>Pasirinkite, kurią sąskaitą tuštinsite</h2><a class='btn' href='./list.php'>Grįžti į sąskaitų sąrašą</a></div>";
 }  
 function generateList(){
     return 'hello';
