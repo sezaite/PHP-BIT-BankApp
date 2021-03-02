@@ -16,11 +16,6 @@ if(!empty($_POST)){
         die;
     }   
 } 
-session_destroy(); //kodel neveikia su session unset message?
-$duomenys = file_get_contents('useriai.json');
-$useriuArr = json_decode($duomenys, 1);
-_d($useriuArr);
-
 ?>
 
 <!DOCTYPE html>
@@ -38,6 +33,7 @@ _d($useriuArr);
         <div class='form-wrap'>
             <h3>Įveskite duomenis: </h3>
             <h6 class='error'> <?= $_SESSION['message'] ?? '' ?> </h6>
+            <?php unset($_SESSION['message']); ?>
         <form action="" method='post'>
 
         <label for="name">Vardas:</label>
