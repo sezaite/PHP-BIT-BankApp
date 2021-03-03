@@ -1,5 +1,6 @@
 <?php
 session_start();
+require __DIR__.'/konstantos.php';
 
 function redirectToMainForm() {
     return "<div class='add-new-wrap'><h2>Pasirinkite, kurią sąskaitą pildysite</h2><a class='btn' href='./list.php'>Grįžti į sąskaitų sąrašą</a></div>";

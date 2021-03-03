@@ -1,5 +1,7 @@
 <?php
 session_start();
+require __DIR__.'/konstantos.php';
+getJsonArray();
 
 function generateEmptyList() {
     return "<div class='add-new-wrap'><h2>Sąskaitų sąrašas tuščias</h2><a class='btn' href='./new.php'>Pridėti sąskaitą</a></div>";
@@ -22,12 +24,10 @@ function generateList(){
 <body>
 <main>
     <?php include "header.html"; 
-    $duomenys = file_get_contents('useriai.json');
-    $useriuArr = json_decode($duomenys, 1);
-    if (count($useriuArr) === 0) {
+    if (count(getJsonArray()) < 1) {
         echo generateEmptyList();
         } else { ?>
-        <table id="user-table">
+        <table>
             <tr>
                 <th>Sąskaitos Nr</th>
                 <th>Vardas</th>
@@ -39,7 +39,8 @@ function generateList(){
             </tr>
 
         <?php
-            foreach($useriuArr as $key => $user){ ?>
+        _d(getJsonArray());
+            foreach(getJsonArray() as $user){ ?>
                 <tr>
                     <td><?= $user['acc'] ?></td>
                     <td><?= $user['name'] ?></td>
@@ -47,7 +48,9 @@ function generateList(){
                     <td><?= $user['personalID'] ?></td>
                     <td><a class="add" href="add.php?userNR=<?= $key ?>">Pridėti</a></td>
                     <td><a class="cashout" href="cashout.php?userNR=<?= $key ?>">Nuskaičiuoti</a></td>
-                    <td><a class="delete" href="delete.php?userNR=<?= $key ?>">Ištrinti</a></td>
+                    <td><form action="<?= URL ?>delete.php?id=<?= $user['acc'] ?>"method="post">
+        <button type="submit">Ištrinti</button>
+        </form></td>
                 </tr>
             <?php }
             echo '</table>';

@@ -1,16 +1,20 @@
 <?php
 session_start();
+require __DIR__.'/konstantos.php';
 if(!empty($_POST)){
     if(($_POST['name'] === '') || ($_POST['surname'] === '') || ($_POST['acc'] === '') || ($_POST['personalID'] === '')){
         $_SESSION['message'] = 'Įveskite visus duomenis!';
          header ('Location: http://localhost/bit/nd8/new.php');
         die;
     } else {
-        $duomenys = file_get_contents('useriai.json');
-        $useriuArr = json_decode($duomenys, 1);
-        $useriuArr[] = $_POST;
-        $naujasJson = json_encode($useriuArr);
-        file_put_contents('useriai.json', $naujasJson);
+        // $duomenys = file_get_contents('useriai.json');
+        // $useriuArr = json_decode($duomenys, 1);
+        $useriuArr = getJsonArray();
+        $index = getLastIndex();
+        $_POST['id'] = $index;
+        writeDataToJson($_POST);
+        // $naujasJson = json_encode($useriuArr);
+        // file_put_contents('useriai.json', $naujasJson);
         $_SESSION['message'] = 'Sąskaita pridėta!';
         header ('Location: http://localhost/bit/nd8/new.php');
         die;
