@@ -20,7 +20,7 @@ function writeDataToJson(array $data) : void
 
 function getLastIndex() : int
 {
-    if (!file_exists(DIR.'data/indexes.json')) {
+    if (!file_exists(DIR.'indexes.json')) {
         $index = json_encode(['id'=>1]);
         file_put_contents(DIR.'indexes.json', $index);
     }

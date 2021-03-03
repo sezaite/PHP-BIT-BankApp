@@ -7,14 +7,11 @@ if(!empty($_POST)){
          header ('Location: http://localhost/bit/nd8/new.php');
         die;
     } else {
-        // $duomenys = file_get_contents('useriai.json');
-        // $useriuArr = json_decode($duomenys, 1);
         $useriuArr = getJsonArray();
         $index = getLastIndex();
         $_POST['id'] = $index;
-        writeDataToJson($_POST);
-        // $naujasJson = json_encode($useriuArr);
-        // file_put_contents('useriai.json', $naujasJson);
+        $useriuArr[]= $_POST;
+        writeDataToJson($useriuArr);
         $_SESSION['message'] = 'Sąskaita pridėta!';
         header ('Location: http://localhost/bit/nd8/new.php');
         die;
