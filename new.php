@@ -4,7 +4,7 @@ require __DIR__.'/konstantos.php';
 if(!empty($_POST)){
     if(($_POST['name'] === '') || ($_POST['surname'] === '') || ($_POST['acc'] === '') || ($_POST['personalID'] === '')){
         $_SESSION['message'] = 'Įveskite visus duomenis!';
-         header ('Location: http://localhost/bit/nd8/new.php');
+         header ('Location: ' . URL .'new.php');
         die;
     } else {
         $useriuArr = getJsonArray();
@@ -13,7 +13,7 @@ if(!empty($_POST)){
         $useriuArr[]= $_POST;
         writeDataToJson($useriuArr);
         $_SESSION['message'] = 'Sąskaita pridėta!';
-        header ('Location: http://localhost/bit/nd8/new.php');
+        header ('Location: ' . URL .'new.php');
         die;
     }   
 } 
