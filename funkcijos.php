@@ -33,4 +33,16 @@ function getLastIndex() : int
     return $id;
 }
 
+function deleteUser(int $id) : void {
+    $data = getJsonArray();
+    foreach($data as &$user){
+        if ($user['id'] === $id){
+            unset($user);
+            writeDataToJson($data);
+            return;
+        }
+    }
+    
+}
+
 ?>

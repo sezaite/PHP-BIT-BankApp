@@ -48,7 +48,7 @@ function generateList(){
                     <td><?= $user['personalID'] ?></td>
                     <td><a class="add" href="add.php?userNR=<?= $key ?>">Pridėti</a></td>
                     <td><a class="cashout" href="cashout.php?userNR=<?= $key ?>">Nuskaičiuoti</a></td>
-                    <td><form action="<?= URL ?>delete.php?id=<?= $user['acc'] ?>"method="post">
+                    <td><form action="<?= URL ?>delete.php?id=<?= $user['id'] ?>"method="post">
         <button type="submit" class="btn delete">Ištrinti</button>
         </form></td>
                 </tr>
