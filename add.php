@@ -23,9 +23,14 @@ function generateList(){
 <body>
 <main>
     <?php include "header.html"; 
-    if (isset($_GET['userNR'])) {
-        $duomenys = file_get_contents('useriai.json');
-        $useriuArr = json_decode($duomenys, 1);
+    if (isset($_GET['id']) && ($_SERVER['REQUEST_METHOD'] == 'GET')) {
+        $data = getJsonArray();
+        foreach($data as $key => $user){
+            if ($user['id'] == $_GET['id']){
+                $theUser = $data[$key];
+                break;
+            }
+        }
     ?>
     <table>
             <tr>
@@ -36,15 +41,18 @@ function generateList(){
                 <th>Sąskaitos likutis</th>
             </tr>
             <tr>
-                <td><?= $useriuArr[$_GET['userNR']]['acc'] ?></td>
-                <td><?= $useriuArr[$_GET['userNR']]['name'] ?></td>
-                <td><?= $useriuArr[$_GET['userNR']]['surname'] ?></td>
-                <td><?= $useriuArr[$_GET['userNR']]['personalID'] ?></td>
-                <td><?= $useriuArr[$_GET['userNR']]['balance'] ?></td>
+                <td><?= $theUser['acc'] ?></td>
+                <td><?= $theUser['name'] ?></td>
+                <td><?= $theUser['surname'] ?></td>
+                <td><?= $theUser['personalID'] ?></td>
+                <td><?= $theUser['balance'] ?></td>
             </tr>
     </table>
+    <h6 class='error'> <?= $_SESSION['message'] ?? '' ?></h6>
+    <?php unset($_SESSION['message']); ?>
     <div class='money-operation'>
-    <form action="" method="post">
+    <form action=<?= URL ?>add.php?id=<?= $user['id']?>" method="post"> 
+    <!-- ar cia reikia dar karta redirectinti? -->
         <label for="deposit">Įveskite pinigų kiekį:</label>
         <input type="number" id="deposit" name ='deposit'>
         <button type='submit' class='btn'>Papildyti</button>
@@ -54,6 +62,28 @@ function generateList(){
         } else {
             echo redirectToMainForm();
         }
+    }
+}
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['id'])){
+            if(isValidDeposit($_POST['deposit'])){
+                $data = getJsonArray();
+                foreach($data as $key => $user){
+                    if ($user['id'] == $_GET['id']){
+                        $data[$key]['balance']+= $_POST['deposit'];
+                        writeDataToJson($data);
+                        $$_SESSION['message'] = 'Operacija atlikta';
+                        header('Location: '. URL . "add.php?id=$data[$key]['id']");
+                        die;
+                    }
+                }
+    } else {
+        $$_SESSION['message'] = 'Pinigų kiekis turi būti teigiamas skaičius';
+    }
+        } else{
+            $$_SESSION['message'] = 'Įveskite pinigų kiekį';
+        }
+    }
+}
         ?>
     </main>
 </body>

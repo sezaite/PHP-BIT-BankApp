@@ -44,4 +44,8 @@ function deleteUser(int $id) : void {
     
 }
 
+function isValidDeposit($deposit) {
+    return $deposit > 0 && is_numeric($deposit);
+}
+
 ?>
