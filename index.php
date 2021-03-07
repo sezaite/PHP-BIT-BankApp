@@ -42,6 +42,8 @@ function generateList(){
         _d(getJsonArray());
             foreach(getJsonArray() as $user){ ?>
                 <tr>
+                <?php _d($user);
+                _d($user['id']); ?>
                     <td><?= $user['acc'] ?></td>
                     <td><?= $user['name'] ?></td>
                     <td><?= $user['surname'] ?></td>

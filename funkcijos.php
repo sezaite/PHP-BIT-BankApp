@@ -6,7 +6,6 @@ function getJsonArray() : array
         $data = json_encode([]);
         file_put_contents(DIR.'useriai.json', $data);
     }
-
     $data = file_get_contents(DIR.'useriai.json');
     return json_decode($data, 1);
 }
@@ -35,9 +34,9 @@ function getLastIndex() : int
 
 function deleteUser(int $id) : void {
     $data = getJsonArray();
-    foreach($data as &$user){
-        if ($user['id'] === $id){
-            unset($user);
+    foreach($data as $key => $user){
+        if ($user['id'] == $id){
+            unset($data[$key]);
             writeDataToJson($data);
             return;
         }
