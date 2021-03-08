@@ -4,9 +4,6 @@ require __DIR__.'/konstantos.php';
 function redirectToMainForm() {
     return "<div class='add-new-wrap'><h2>Pasirinkite, kurią sąskaitą pildysite</h2><a class='btn' href='./list.php'>Grįžti į sąskaitų sąrašą</a></div>";
 }  
-function generateList(){
-    return 'hello';
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -64,17 +61,15 @@ function generateList(){
                     if ($user['id'] == $_GET['id']){
                         $data[$key]['balance']+= $_POST['deposit'];
                         writeDataToJson($data);
-                        $$_SESSION['message'] = 'Operacija atlikta';
-                        header('Location: '. URL . "add.php?id=$data[$key]['id']");
+                        $_SESSION['message'] = 'Operacija atlikta';
+                        header('Location: '. URL . "add.php?id=". $data[$key]['id']);
                         die;
                     }
                 }
     } else {
-        $$_SESSION['message'] = 'Pinigų kiekis turi būti teigiamas skaičius';
+        $_SESSION['message'] = 'Pinigų kiekis turi būti teigiamas skaičius';
     }
-        } else {
-            $$_SESSION['message'] = 'Įveskite pinigų kiekį';
-        }
+        } 
     
         ?>
     </main>
