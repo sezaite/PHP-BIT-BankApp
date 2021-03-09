@@ -42,9 +42,9 @@ function redirectToMainForm() {
                  <td><?= $theUser['balance'] ?></td>
              </tr>
      </table>
-     <h6 class='error'> <?= $_SESSION['message'] ?? '' ?></h6>
-     <?php unset($_SESSION['message']); ?>
      <div class='money-operation'>
+     <h6 class='error' style='margin-top: 20px'> <?= $_SESSION['add-message'] ?? '' ?></h6>
+     <?php unset($_SESSION['add-message']); ?>
      <form action="<?= URL ?>add.php?id=<?= $user['id']?>" method="post"> 
          <label for="deposit">Įveskite pinigų kiekį:</label>
          <input type="number" id="deposit" name ='deposit'>
@@ -55,22 +55,21 @@ function redirectToMainForm() {
             echo redirectToMainForm();
         }
          if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['id'])){
-            if(isValidDeposit($_POST['deposit'])){
                 $data = getJsonArray();
                 foreach($data as $key => $user){
-                    if ($user['id'] == $_GET['id']){
+                    if ($user['id'] == $_GET['id'] && isValidDeposit($_POST['deposit'])){
                         $data[$key]['balance']+= $_POST['deposit'];
                         writeDataToJson($data);
-                        $_SESSION['message'] = 'Operacija atlikta';
+                        $_SESSION['add-message'] = 'Operacija atlikta';
                         header('Location: '. URL . "add.php?id=". $data[$key]['id']);
                         die;
-                    }
+                    } else {
+                        $_SESSION['add-message'] = 'Pinigų kiekis turi būti teigiamas skaičius';
+                        header('Location: '. URL . "add.php?id=". $data[$key]['id']);
+                        die;
                 }
-    } else {
-        $_SESSION['message'] = 'Pinigų kiekis turi būti teigiamas skaičius';
-    }
         } 
-    
+    }
         ?>
     </main>
 </body>
