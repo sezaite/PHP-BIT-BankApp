@@ -178,3 +178,9 @@ table {
     a.cashout {
         color: var(--accent-color);
     }
+
+    .button-wrap {
+        display: flex;
+        justify-content: center;
+    }
+

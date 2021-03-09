@@ -1,14 +1,12 @@
 <?php
 session_start();
 require __DIR__.'/konstantos.php';
-getJsonArray();
+
+_d($_SESSION);
 
 function generateEmptyList() {
     return "<div class='add-new-wrap'><h2>Sąskaitų sąrašas tuščias</h2><a class='btn' href='./new.php'>Pridėti sąskaitą</a></div>";
 }  
-function generateList(){
-    return 'hello';
-}
 
 ?>
 
@@ -28,7 +26,7 @@ function generateList(){
         echo generateEmptyList();
         } else { ?>
         <table>
-        <h6 class='error' style='margin-top: 20px'> <?= $_SESSION['delete-message'] ?? '' ?></h6>
+        <h6 class='error' style='margin-top: 20px; text-align: center;'><?= $_SESSION['delete-message'] ?? '' ?></h6>
         <?php unset($_SESSION['delete-message']); ?>
             <tr>
                 <th>Sąskaitos Nr</th>
@@ -41,11 +39,8 @@ function generateList(){
             </tr>
 
         <?php
-        _d(getJsonArray());
             foreach(getJsonArray() as $user){ ?>
                 <tr>
-                <?php _d($user);
-                _d($user['id']); ?>
                     <td><?= $user['acc'] ?></td>
                     <td><?= $user['name'] ?></td>
                     <td><?= $user['surname'] ?></td>

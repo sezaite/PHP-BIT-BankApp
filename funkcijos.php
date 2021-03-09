@@ -1,4 +1,7 @@
 <?php
+if (!isset($_SESSION)){
+    session_start();
+}
 function getJsonArray() : array
 {
     if (!file_exists(DIR.'useriai.json')) {

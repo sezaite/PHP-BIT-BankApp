@@ -43,12 +43,14 @@ function redirectToMainForm() {
              </tr>
      </table>
      <div class='money-operation'>
-     <h6 class='error' style='margin-top: 20px'> <?= $_SESSION['out-message'] ?? '' ?></h6>
+     <h6 class='error' style='margin-top: 20px;'> <?= $_SESSION['out-message'] ?? '' ?></h6>
      <?php unset($_SESSION['out-message']); ?>
      <form action="<?= URL ?>cashout.php?id=<?= $user['id']?>" method="post"> 
          <label for="cash-out">Įveskite pinigų kiekį:</label>
          <input type="number" id="cash-out" name ='cash-out'>
-         <button type='submit' class='btn'>Papildyti</button>
+         <div class='button-wrap'>
+         <button type='submit' class='btn inline'>Nuskaičiuoti</button> <a href="<?= URL ?>" class="btn inline">Grižti į sąrašą</a>
+         </div>
      </form>
      </div>
     <?php } else {
