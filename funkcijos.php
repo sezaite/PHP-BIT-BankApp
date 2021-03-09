@@ -1,5 +1,4 @@
 <?php
-
 function getJsonArray() : array
 {
     if (!file_exists(DIR.'useriai.json')) {
@@ -36,16 +35,24 @@ function deleteUser(int $id) : void {
     $data = getJsonArray();
     foreach($data as $key => $user){
         if ($user['id'] == $id){
+            if ($data[$key]['balance'] == 0){
             unset($data[$key]);
             writeDataToJson($data);
+            $_SESSION['delete-message'] = 'Sąskaita ištrinta';
             return;
-        }
+            } else {
+                $_SESSION['delete-message'] = 'Negaliu ištrinti sąskaitos, kurioje yra lėšų';
+                return;
+            }
+        }  
     }
-    
 }
 
 function isValidDeposit($deposit) {
     return $deposit > 0 && is_numeric($deposit);
 }
 
-?>
+function isValidDeduction($deduction, $balance) {
+    return $deduction <= $balance && $deduction > 0 && is_numeric($deduction);
+}
+

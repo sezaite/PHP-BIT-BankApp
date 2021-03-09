@@ -28,6 +28,8 @@ function generateList(){
         echo generateEmptyList();
         } else { ?>
         <table>
+        <h6 class='error' style='margin-top: 20px'> <?= $_SESSION['delete-message'] ?? '' ?></h6>
+        <?php unset($_SESSION['delete-message']); ?>
             <tr>
                 <th>Sąskaitos Nr</th>
                 <th>Vardas</th>
